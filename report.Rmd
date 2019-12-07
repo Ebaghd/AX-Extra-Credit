@@ -1,0 +1,56 @@
+---
+title: "S&P 500 Time Series Data Set Report"
+runtime: shiny
+output: html_document
+---
+```{r loadpackages, include = FALSE}
+source("app_server.R")
+library("shiny")
+library("shinythemes")
+library("knitr")
+library("ggplot2")
+library("dplyr")
+```
+``` {r shiny, echo = FALSE}
+navbarPage(theme = shinytheme("darkly"),
+           "Press the words on the right to see the page!",
+                   tabPanel("Introduction",
+                            h1("When Was the Data Collected?"),
+                          "This data was collected over the course of 2013 to                                           2018. The data set represents all S&P 500                                                 companies' historical data from 2013 - 2018.",
+                            h1("Where was this data collected?"),
+                                         "The S&P 500 Data Set was collected from                                                   companies located all over the US.",
+                            h1("Who Collected the Data?"),
+                                         "The Kaggle User, Cam Nugent submitted the data                                            set to Kaggle. He is a postdoctoral
+                                          researcher at the University of Guelph, 
+                                          at the Centre for Biodiversity Genomics.",
+                            h1("Why was the Data Collected?"),
+                               "The data was collected because a large and well-structured                                 dataset on a wide array of companies can be hard to find.                                 Stock market data can be interesting to work with. Also, a                                 strong predictive model can have a large financial reward.
+                                The data set has prices of each company for every day at                                  opening, closing, high price, and low price from 2013 to                                  2018."),
+                   tabPanel("Bar plot", renderPlot(mean_data_plot)),
+                   tabPanel("Conclusion", h1("Discussion"), 
+                            "As one can see in the bar plot, the average value
+                             of a stock nearly doubled in five years. This means
+                             long-term investors have much to gain in
+                             investing in stocks. Stockholders who purchased
+                             stocks in 2013 nearly doubled their money on average.
+                             This steady increase means stocks can be a wise 
+                             investment.", 
+                             h1("Reflection"),
+                            "I learned that one can make a
+                             lot of money in long-term stock 
+                             investments. I also learned that
+                             investments/stocks can have much to
+                             do with informatics. If I make a 
+                             good prediction model, I can make 
+                             a lot of money in stocks. The data 
+                             and patterns within it will determine
+                             which stock is the most profitable, as
+                             we can uncover through data wrangling.",
+                             h1("Code Snippet"), 
+                             "When creating a Shiny app, I learned
+                              that I did not need to create a server
+                              or declare the usual shiny app syntax.
+                              Here is an appendix of some code I did 
+                              not need for the Shiny App: 
+                              shinyApp(ui = myui, server = my_server)")
+                            )
